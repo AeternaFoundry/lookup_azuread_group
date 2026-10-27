@@ -8,6 +8,8 @@ Optional:
     - mail_nickname
     - object_id
     - security_enabled
+    - timeouts (block):
+        - read (optional)
 EOT
 
   type = map(object({
@@ -17,6 +19,9 @@ EOT
     mail_nickname              = optional(string)
     object_id                  = optional(string)
     security_enabled           = optional(bool)
+    timeouts = optional(object({
+      read = optional(string)
+    }))
   }))
   validation {
     condition = alltrue([

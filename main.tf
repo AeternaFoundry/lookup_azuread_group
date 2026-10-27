@@ -7,5 +7,12 @@ data "azuread_group" "group_lookup" {
   mail_nickname              = each.value.mail_nickname
   object_id                  = each.value.object_id
   security_enabled           = each.value.security_enabled
+
+  dynamic "timeouts" {
+    for_each = each.value.timeouts != null ? [each.value.timeouts] : []
+    content {
+      read = timeouts.value.read
+    }
+  }
 }
 
